@@ -22,6 +22,7 @@ h2{
 .list{
     align-items: center;
     display: inline;
+    padding: 5px;
 }
 
 a{
