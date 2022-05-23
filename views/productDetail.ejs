@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/main.css">
     <title>Product Details</title>
 </head>
 <body>
-    <%- include('layout/navbar') %>
     <h1>Edit Product Details</h1>
     <form action="/products/update/<%=product._id %>" method="post" enctype="multipart/form-data">
         <label>Name: </label>
         <input type="text" name="title" value=<%=product.title %> />
         <br>
+        <br>
         <label>Price: </label>
         <input type="number" name="price" value=<%=product.price %> />
         <br>
-        <input type="submit" value="Edit" />
+        <br>
+        <input type="submit" value="Edit" class="add"/>
     </form>
-    <button><a href="/products/delete/<%=product._id %>">Delete</a></button>
+    <br>
+    <button class="delete"><a href="/products/delete/<%=product._id %>">Delete</a></button>
 </body>
 </html>

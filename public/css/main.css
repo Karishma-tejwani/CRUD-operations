@@ -1,7 +1,29 @@
 h1{
-    color: coral;
+    color: purple;
 }
 
 h2{
     color: green;
+}
+
+.add{
+    background-color: rgb(80, 80, 237);
+    color: white;
+    font-size: large;
+}
+
+.delete{
+    background-color: rgb(244, 95, 95);
+    color: white;
+    font-size: large;
+    text-decoration: none;
+}
+
+.list{
+    align-items: center;
+    display: inline;
+}
+
+a{
+    text-decoration: none;
 }
