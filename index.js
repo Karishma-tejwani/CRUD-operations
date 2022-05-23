@@ -44,26 +44,6 @@ app.get('/product/getProduct/:pid', async function(req, res){
     res.render('productDetail', {product})
 });
 
-// Update
-app.post('/products/update/:pid', async function(req, res){
-    const pid = req.params.pid;
-    console.log("updated id: " + pid);
-    console.log("updated title and price: "+req.body.title+ " " + req.body.price);
-    const prod = await Product.updateMany({_id: pid}, {$set: {title: req.body.title, price: req.body.price}});
-    console.log("updated product " + prod);
-    res.redirect('/');
-});
-
-// Delete
-app.post('/products/delete/:pid', async function(req, res){
-    const pid = req.params.pid;
-    console.log("delete id: " + pid);
-    const product = await Product.findByIdAndDelete(pid);
-    const products = await Product.find();
-    // console.log("deleted id: " + product);
-    res.render('products', {products});
-});
-
 // Create
 app.post('/product/create', function(req, res){
     console.log(req.body);
@@ -71,6 +51,25 @@ app.post('/product/create', function(req, res){
         console.log(product);
         res.redirect('/products');
     });
+});
+
+// Update
+app.post('/products/update/:pid', async function(req, res){
+    const pid = req.params.pid;
+    console.log("updated id: " + pid);
+    console.log("updated title and price: "+req.body.title+ " " + req.body.price);
+    const prod = await Product.updateMany({_id: pid}, {$set: {title: req.body.title, price: req.body.price}});
+    res.redirect('/products');
+});
+
+// Delete
+app.get('/products/delete/:pid', async function(req, res){
+    const pid = req.params.pid;
+    console.log("delete id: " + pid);
+    const product = await Product.findByIdAndDelete(pid);
+    const products = await Product.find();
+    console.log("deleted product: " + product);
+    res.render('products', {products});
 });
 
 // ----------------pug----------
