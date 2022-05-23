@@ -1,5 +1,3 @@
-// const http = require('http');
-// const fs = require('fs');
 // const { render, compileFile } = require('pug');
 const express = require('express');
 const app = express();
@@ -12,89 +10,23 @@ mongoose.connect("mongodb://localhost:27017/ead"); //connect db
 const Product = require('./models/Product');
 
 //upload image
-// const uploadFile = require('express-fileupload');
-// app.use(uploadFile());
-const fileUpload = require('express-fileupload');
-app.use(fileUpload());
+const uploadFile = require('express-fileupload');
+app.use(uploadFile());
 
 // apply css 
 app.use('/style', express.static('public/css/'));
 
-// const { respone } = require('express');
+const { respone } = require('express');
 const bodyParser = require('body-parser');
-const { response } = require('express');
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname, "public")));
-
-// app.use(express.static(path.join(__dirname,"public")))
+app.use(express.static(path.join(__dirname,"public")))
 
 //set view engine
 app.set('view engine', 'ejs')
 
 // app.set('view engine', 'pug')
-
-// write file
-// fs.writeFileSync('read.txt','EAD is too tough course')
-
-// //readfile
-// console.log(fs.readFileSync('read.txt').toString());
-
-// //rename file
-// fs.renameSync('read.txt','readWrite.txt');
-
-// const server = http.createServer(function(req, res){
-//     res.write('hello')
-//     res.end()
-// })
-
-// const server = http.createServer(function(req, res){
-//     console.log(req.url)
-//     if(req.url == '/something'){
-//         res.write('something')
-//     }
-//     else if(req.url == '/abc'){
-//         res.write('abc')
-//     }
-//     res.end()
-// })
-
-////////////////// send response to static pages
-
-// const server = http.createServer(function(req, res){
-//     console.log(req.url)
-//     if(req.url === '/'){
-//         const indexPage = fs.readFileSync('index.html')
-//         res.write(indexPage)
-//     }
-//     else if(req.url === '/about'){
-//         const aboutPage = fs.readFileSync('about.html')
-//         res.write(aboutPage)
-//     }
-//     res.end()
-// })
-
-// server.listen(3000, function(){
-//     console.log('Server is listening at 3000 port')
-// })
-
-//////////////Express
-
-// app.get('/', function(req,res){
-//     res.status(200).json({result: "success"})
-// })
-
-//////////// Absolute path
-// app.get('/', function(req,res){
-//     console.log(__dirname)
-//     res.sendFile(path.resolve(__dirname, 'index.html'))
-// })
-
-// app.get('/about', function(req,res){
-//     console.log(__dirname)
-//     res.sendFile(path.resolve(__dirname, 'about.html'))
-// })
 
 //---------------ejs----------------
 
@@ -120,21 +52,13 @@ app.get('/product/getProduct/:pid', async function(req, res){
 });
 
 // Create
-// app.post('/product/create', function(req, res){
-//     console.log("File uploaded " + req.files);
-//     Product.create(req.body, function(err, product){
-//         console.log(product);
-//         res.redirect('/products');
-//     });
-// });
-
 app.post('/product/create', function(req, res){
-    console.log("In file upload "+req.files);
+    console.log("File uploaded " + req.files);
     Product.create(req.body, function(err, product){
-        console.log(product)
-        res.redirect("/products")
+        console.log(product);
+        res.redirect('/products');
     });
-})
+});
 
 // Update
 app.post('/products/update/:pid', async function(req, res){
