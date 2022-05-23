@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/main.css">
+    <title>Create Product</title>
+</head>
+<body>
+    <%- include('layout/navbar') %>
+    <h1>Create a Product</h1>
+    <form action="/product/create" method="post" enctype="multipart/form-data">
+        <label>Name: </label>
+        <input type="text" name="title" />
+        <br>
+        <label>Price: </label>
+        <input type="number" name="price" />
+        <input type="submit" value="Create" />
+    </form>
+</body>
+</html>
