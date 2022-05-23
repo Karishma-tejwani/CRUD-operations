@@ -1,9 +1,6 @@
-// const http = require('http');
-// const fs = require('fs');
 // const { render, compileFile } = require('pug');
 const express = require('express');
 const app = express()
-const path = require('path');
 const mongoose = require('mongoose'); //import db
 
 //connect db
@@ -21,68 +18,8 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 //set view engine
 app.set('view engine', 'ejs')
+
 // app.set('view engine', 'pug')
-
-// write file
-// fs.writeFileSync('read.txt','EAD is too tough course')
-
-// //readfile
-// console.log(fs.readFileSync('read.txt').toString());
-
-// //rename file
-// fs.renameSync('read.txt','readWrite.txt');
-
-// const server = http.createServer(function(req, res){
-//     res.write('hello')
-//     res.end()
-// })
-
-// const server = http.createServer(function(req, res){
-//     console.log(req.url)
-//     if(req.url == '/something'){
-//         res.write('something')
-//     }
-//     else if(req.url == '/abc'){
-//         res.write('abc')
-//     }
-//     res.end()
-// })
-
-////////////////// send response to static pages
-
-// const server = http.createServer(function(req, res){
-//     console.log(req.url)
-//     if(req.url === '/'){
-//         const indexPage = fs.readFileSync('index.html')
-//         res.write(indexPage)
-//     }
-//     else if(req.url === '/about'){
-//         const aboutPage = fs.readFileSync('about.html')
-//         res.write(aboutPage)
-//     }
-//     res.end()
-// })
-
-// server.listen(3000, function(){
-//     console.log('Server is listening at 3000 port')
-// })
-
-//////////////Express
-
-// app.get('/', function(req,res){
-//     res.status(200).json({result: "success"})
-// })
-
-//////////// Absolute path
-// app.get('/', function(req,res){
-//     console.log(__dirname)
-//     res.sendFile(path.resolve(__dirname, 'index.html'))
-// })
-
-// app.get('/about', function(req,res){
-//     console.log(__dirname)
-//     res.sendFile(path.resolve(__dirname, 'about.html'))
-// })
 
 //---------------ejs----------------
 
